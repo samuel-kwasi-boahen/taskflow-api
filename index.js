@@ -34,14 +34,29 @@ app.post('/tasks', (req, res) => {
 
 app.get('/tasks/:id', (req, res) => {
   const task = tasks.find(t => t.id === Number(req.params.id));
+
+    if (!task) {
+    return res.status(404).json({ error: 'Task not found' });
+  }
   res.json(task);
 });
 
-app.patch('/tasks/:id', (req, res) => {
+/* app.patch('/tasks/:id', (req, res) => {
   const task = tasks.find(t => t.id === Number(req.params.id));
   task.done = true;
   res.json(task);
-})
+}) */
+
+  app.patch('/tasks/:id', (req, res) => {
+  const task = tasks.find(t => t.id === Number(req.params.id));
+
+  if (!task) {
+    return res.status(404).json({ error: 'Task not found' });
+  }
+
+  task.done = true;
+  res.json(task);
+});
 
 app.delete('/tasks/:id', (req, res) => {
   tasks = tasks.filter(t => t.id !== Number(req.params.id));
