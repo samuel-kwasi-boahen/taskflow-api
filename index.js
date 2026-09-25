@@ -43,3 +43,7 @@ app.patch('/tasks/:id', (req, res) => {
   res.json(task);
 })
 
+app.delete('/tasks/:id', (req, res) => {
+  tasks = tasks.filter(t => t.id !== Number(req.params.id));
+  res.status(204).send();
+});
