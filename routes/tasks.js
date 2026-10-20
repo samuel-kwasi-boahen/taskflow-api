@@ -4,6 +4,7 @@ const router = express.Router();
 let tasks = [
   { id: 1, title: 'Set up TaskFlow project', done: true }
 ];
+let nextId = 2;
 
 router.get('/', (req, res) => {
   res.json(tasks);
@@ -19,7 +20,9 @@ router.post('/', (req, res) => {
   if (!req.body.title) {
     return res.status(400).json({ error: 'Title is required' });
   }
-  const newTask = { id: tasks.length + 1, title: req.body.title, done: false };
+  // const newTask = { id: tasks.length + 1, title: req.body.title, done: false };
+  // tasks.push(newTask);
+  const newTask = { id: nextId++, title: req.body.title, done: false };
   tasks.push(newTask);
   res.status(201).json(newTask);
 });
