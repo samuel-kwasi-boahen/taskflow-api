@@ -1,11 +1,30 @@
 # TaskFlow API
 
-A team task-management REST API, built as part of a hands-on backend
-engineering learning project.
+A REST API for team task and project management, built with Node.js and Express.
 
-## Status
-🟢 Server is live with a health-check endpoint.
+## Features
+- Task CRUD (create, read, update, delete)
+- Input validation and consistent error responses
+- Modular route structure
 
-## Stack
-Node.js · Express · PostgreSQL (coming next) · JWT Auth (coming soon)
+## Endpoints
+| Method | Route | Description |
+|---|---|---|
+| GET | /health | Service health check |
+| GET | /tasks | List all tasks |
+| GET | /tasks/:id | Get a task by id |
+| POST | /tasks | Create a task |
+| PATCH | /tasks/:id | Mark a task as done |
+| DELETE | /tasks/:id | Delete a task |
 
+## Run locally
+    npm install
+    node index.js
+
+Server runs on http://localhost:3000
+
+## Roadmap
+- PostgreSQL persistence (Prisma)
+- Authentication and role-based access
+- Automated tests and CI
+- Dockerized deployment
