@@ -28,3 +28,8 @@ Server runs on http://localhost:3000
 - Authentication and role-based access
 - Automated tests and CI
 - Dockerized deployment
+
+## Database setup
+1. Install PostgreSQL and create a database named `taskflow`.
+2. Copy `.env.example` to `.env` and replace `YOUR_PASSWORD` with your local password.
+3. Never commit `.env`. It holds your password and is already listed in `.gitignore`.
