@@ -5,7 +5,7 @@ const router = express.Router();
 let tasks = [
   { id: 1, title: 'Set up TaskFlow project', done: true }
 ];
-let nextId = 2;
+//let nextId = 2;
 
 router.get('/', (req, res) => {
   res.json(tasks);
@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
   res.json(task);
 });
 
-router.post('/', (req, res) => {
+/*router.post('/', (req, res) => {
   if (!req.body.title) {
     return res.status(400).json({ error: 'Title is required' });
   }
@@ -26,6 +26,16 @@ router.post('/', (req, res) => {
   const newTask = { id: nextId++, title: req.body.title, done: false };
   tasks.push(newTask);
   res.status(201).json(newTask);
+}); */
+
+router.post('/', async (req, res) => {
+  const {title} = req.body;
+  if(typeof title !== 'string' || title.trim () === '') {
+    return res.status(400).json({error: 'title is required'});
+
+    const task = await prisma.task.create({data: {title: title.trim()}});
+    res.status(201).json(task);
+  }
 });
 
 router.patch('/:id', (req, res) => {
